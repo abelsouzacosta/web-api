@@ -17,5 +17,16 @@
   "bugs": {
     "url": "https://github.com/abelsouzacosta/web-api/issues"
   },
-  "homepage": "https://github.com/abelsouzacosta/web-api#readme"
+  "homepage": "https://github.com/abelsouzacosta/web-api#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.1",
+    "@commitlint/config-conventional": "^17.0.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^4.3.8"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
