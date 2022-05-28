@@ -3,6 +3,7 @@ import { parse } from 'node:url';
 const allRoutes = {
   '/': (request, response) => {
     response.write("Hello World!!!");
+    response.end();
   },
 
   '/heroes:get': (request, response) => {
