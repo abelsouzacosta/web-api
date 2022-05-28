@@ -1,18 +1,18 @@
 import { parse } from 'node:url'; 
-import { DEFAULT_HEADER } from './util/util';
+import { DEFAULT_HEADER } from './util/util.mjs';
 
 const allRoutes = {
-  '/': (request, response) => {
+  '/:get': async (request, response) => {
     response.write("Hello World!!!");
     response.end();
   },
 
-  '/heroes:get': (request, response) => {
+  '/heroes:get': async (request, response) => {
     response.write("Get all heroes in the database");
     response.end();
   },
 
-  default: (request, response) => {
+  default: async (request, response) => {
     response.writeHead(404, DEFAULT_HEADER);
     response.write("Not Found");
     response.end();
@@ -25,7 +25,19 @@ function handler(request, response) {
   let key = `${pathname}:${method.toLowerCase()}`
   let chosen = allRoutes[key] || allRoutes.default
 
-  return chosen(request, response)
+  return Promise.resolve(chosen(request, response)).catch(handlerError(response))
+}
+
+function handlerError(response) {
+  return error => {
+    console.error(`Error: ${error.stack}`);
+    response.writeHead(500, DEFAULT_HEADER);
+    response.write(JSON.stringify({
+      error: "Internal server error"
+    }));
+
+    return response.end();
+  };
 }
 
 export default handler;
