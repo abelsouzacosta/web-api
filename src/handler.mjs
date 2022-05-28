@@ -1,4 +1,5 @@
 import { parse } from 'node:url'; 
+import { DEFAULT_HEADER } from './util/util';
 
 const allRoutes = {
   '/': (request, response) => {
@@ -12,9 +13,7 @@ const allRoutes = {
   },
 
   default: (request, response) => {
-    response.writeHead(404, {
-      'content-type': 'application/json',
-    });
+    response.writeHead(404, DEFAULT_HEADER);
     response.write("Not Found");
     response.end();
   }
