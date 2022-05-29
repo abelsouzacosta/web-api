@@ -1,14 +1,18 @@
 import { parse } from 'node:url'; 
 import { DEFAULT_HEADER } from './util/util.mjs';
+import { routes } from './routes/heroRoute.mjs'
+
+const heroRoutes = routes({
+  heroService: {
+
+  }
+})
 
 const allRoutes = {
+  ...heroRoutes,
+
   '/:get': async (request, response) => {
     response.write("Hello World!!!");
-    response.end();
-  },
-
-  '/heroes:get': async (request, response) => {
-    response.write("Get all heroes in the database");
     response.end();
   },
 
