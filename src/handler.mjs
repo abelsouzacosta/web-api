@@ -1,11 +1,24 @@
 import { parse } from 'node:url'; 
 import { Headers } from './util/util.mjs';
 import { routes } from './routes/heroRoute.mjs'
+import { generateInstance } from './factories/heroFactory.mjs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const currentDir = dirname(
+  fileURLToPath(
+    import.meta.url
+  )
+);
+
+const filePath = join(currentDir, './../database', 'data.json')
+
+const heroService = generateInstance({
+  filePath
+})
 
 const heroRoutes = routes({
-  heroService: {
-
-  }
+  heroService
 })
 
 const allRoutes = {
@@ -34,7 +47,7 @@ function handler(request, response) {
 
 function handlerError(response) {
   return error => {
-    console.error(`Error: ${error.stack}`);
+    console.error(`Error: ${error.stack}`);[]
     response.writeHead(500, Headers.DEFAULT_HEADER);
     response.write(JSON.stringify({
       error: "Internal server error"
