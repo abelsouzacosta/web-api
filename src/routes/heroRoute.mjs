@@ -15,7 +15,7 @@ const routes = ({
     
     const hero = new Hero(parsedBodyRequest);
 
-    const id = hero.id;
+    const id = await heroService.create(hero);
 
     response.writeHead(HttpStatus.CREATED, Headers.DEFAULT_HEADER);
     response.write(JSON.stringify({
