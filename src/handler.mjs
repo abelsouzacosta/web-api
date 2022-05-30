@@ -1,5 +1,5 @@
 import { parse } from 'node:url'; 
-import { DEFAULT_HEADER } from './util/util.mjs';
+import { Headers } from './util/util.mjs';
 import { routes } from './routes/heroRoute.mjs'
 
 const heroRoutes = routes({
@@ -17,7 +17,7 @@ const allRoutes = {
   },
 
   default: async (request, response) => {
-    response.writeHead(404, DEFAULT_HEADER);
+    response.writeHead(404, Headers.DEFAULT_HEADER);
     response.write("Not Found");
     response.end();
   }
@@ -35,7 +35,7 @@ function handler(request, response) {
 function handlerError(response) {
   return error => {
     console.error(`Error: ${error.stack}`);
-    response.writeHead(500, DEFAULT_HEADER);
+    response.writeHead(500, Headers.DEFAULT_HEADER);
     response.write(JSON.stringify({
       error: "Internal server error"
     }));

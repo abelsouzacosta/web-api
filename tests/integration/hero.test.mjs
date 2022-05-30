@@ -35,8 +35,8 @@ test('Hero Integration test suite', async (t) => {
       'it should return a valid text message'
     );
 
-    assert.deepStrictEqual(
-      result.id.length > 30,
+    assert.ok(
+      result.id.length >= 30,
       'id should be a valid uuid'
     );
 
