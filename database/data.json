@@ -1,1 +1,14 @@
-[{"id":"ec00b057-2d0b-4638-a9a4-ea3433d27a54","name":"Batman","age":50,"power":"rich"}]
+[
+  {
+    "id": "ec00b057-2d0b-4638-a9a4-ea3433d27a54",
+    "name": "Batman",
+    "age": 50,
+    "power": "rich"
+  },
+  {
+    "id": "daf9c622-eef2-482a-8f38-b4ca7eca6fcc",
+    "name": "Batman",
+    "age": 50,
+    "power": "rich"
+  }
+]
